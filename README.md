@@ -1,1 +1,0 @@
-# SGDB-Apply-All
