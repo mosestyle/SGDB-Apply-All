@@ -1,0 +1,31 @@
+name: Build Decky plugin
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Enable pnpm 9
+        run: |
+          corepack enable
+          corepack prepare pnpm@9 --activate
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+      - name: Build frontend
+        run: pnpm run build
+      - name: Validate Python
+        run: python -m py_compile main.py
+      - name: Package Decky zip
+        run: pnpm run package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SGDB-Apply-All
+          path: out/SGDB-Apply-All-v*.zip

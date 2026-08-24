@@ -1,0 +1,10 @@
+{
+  "name": "SGDB Apply All",
+  "author": "Community companion plugin",
+  "flags": [],
+  "api_version": 1,
+  "publish": {
+    "tags": ["steamgriddb", "artwork", "library"],
+    "description": "Apply Capsule, Wide Capsule, Hero, Logo and Icon artwork from SteamGridDB in one Gaming Mode action."
+  }
+}
